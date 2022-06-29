@@ -1,16 +1,83 @@
+/* Box sizing rules */
 *,
-*::after,
-*::before {
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
   margin: 0;
-  border: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 body {
   font-family: var(--font-sans);
   padding-inline: var(--size-4);
   background-color: var(--gray-2);
-  /* background-image: var(--gradient-15); */
+  /* background-image: var(--gradient-23); */
 }
 
 .container {
@@ -30,6 +97,12 @@ body {
   border-bottom: var(--border-size-1) dashed var(--gray-6);
 }
 
+h1,
+h2,
+h3 {
+  color: var(--gray-8);
+}
+
 /* **************** */
 /* Projects Section */
 .projects {
@@ -37,14 +110,71 @@ body {
 }
 
 .projects-heading {
-  font-size: var(--font-size-4);
+  /* font-size: var(--font-size-4); */
+  /* display: flex;
+  align-items: center;
+  gap: var(--size-2); */
   margin-bottom: var(--size-2);
+}
+
+.btn {
+  border: var(--border-size-1) solid var(--gray-5);
+  padding: var(--size-1) var(--size-3);
+  border-radius: var(--radius-3);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--gray-2);
+}
+
+.btn:active {
+  background-color: var(--gray-3);
+}
+
+.add {
+  background-color: var(--green-1);
+}
+
+.add:hover {
+  background-color: var(--green-2);
+}
+
+.cancel {
+  background-color: var(--red-1);
+}
+
+.cancel:hover {
+  background-color: var(--red-2);
+}
+
+#project-name {
+  border: var(--border-size-2) solid var(--gray-7);
+  padding-inline: var(--size-2);
+  border-radius: var(--radius-3);
+}
+
+#project-name:focus-visible {
+  outline: var(--border-size-2) solid var(--gray-7);
 }
 
 .projects-list {
   display: flex;
   flex-wrap: wrap;
   gap: var(--size-2);
+}
+
+.projects-list > a {
+  text-decoration: none;
+}
+
+.projects-list > a:hover,
+.projects-list > a:active {
+  text-decoration: none;
+  border: var(--border-size-1) solid var(--gray-7);
+  /* background-color: var(--gray-8); */
+  background-image: var(--gradient-23);
+  color: var(--gray-0);
 }
 
 .project {
@@ -57,8 +187,9 @@ body {
 }
 
 .active {
-  border: var(--border-size-1) solid var(--gray-9);
-  background-color: var(--gray-8);
+  border: var(--border-size-1) solid var(--gray-7);
+  /* background-color: var(--gray-8); */
+  background-image: var(--gradient-23);
   color: var(--gray-0);
 }
 
@@ -115,6 +246,7 @@ input[type="checkbox"]::before {
   transform: scale(0);
   transition: 60ms transform ease-in-out;
   box-shadow: inset 1em 1em var(--gray-8);
+  border-radius: var(--radius-1);
 }
 
 input[type="checkbox"]:checked::before {
@@ -134,4 +266,8 @@ input[type="checkbox"]:focus {
 
 .task-info {
   text-align: end;
+}
+
+.hidden {
+  display: none;
 }
