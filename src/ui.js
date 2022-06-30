@@ -1,6 +1,7 @@
 "use strict";
 
 import { Storage } from "./storage";
+import { createProject } from "./utils";
 
 const btnAddProject = document.querySelector(".btn-add-project");
 const projectForm = document.querySelector(".project-form");
@@ -14,6 +15,16 @@ const toggleProjectInput = function () {
   projectForm.classList.toggle("hidden");
 };
 
+const redrawProjects = function () {
+  projectsList.innerHTML = "";
+  Storage.projects.forEach((project) => {
+    projectsList.insertAdjacentHTML(
+      "afterbegin",
+      `<a href="#" class="project">${project.name}</a>`
+    );
+  });
+};
+
 btnAddProject.addEventListener("click", function () {
   toggleProjectInput();
   inputProjectName.focus();
@@ -21,3 +32,9 @@ btnAddProject.addEventListener("click", function () {
 });
 
 btnCancel.addEventListener("click", toggleProjectInput);
+
+btnAdd.addEventListener("click", function () {
+  const projectName = inputProjectName.value;
+  createProject(projectName);
+  redrawProjects();
+});
