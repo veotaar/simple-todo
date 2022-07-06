@@ -10,6 +10,7 @@ export const Storage = (function () {
 
   const setCurrentProject = function (projectID) {
     currentProjectID = projectID;
+    console.log(currentProjectID);
   };
 
   return {
