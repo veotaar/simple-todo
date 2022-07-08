@@ -1,23 +1,18 @@
-export const Storage = (function () {
-  let projects = [];
-  let currentProjectID = "";
-  let tasks = [];
+class Storage {
+  constructor() {
+    this.projects = [];
+    this.currentProjectID = "";
+    this.tasks = [];
+  }
 
-  const addProject = function (project) {
-    projects.push(project);
-    console.log(projects);
-  };
+  addProject(project) {
+    this.projects.push(project);
+    this.currentProjectID = project.id;
+  }
 
-  const setCurrentProject = function (projectID) {
-    currentProjectID = projectID;
-    console.log(currentProjectID);
-  };
+  setCurrentProject(projectID) {
+    this.currentProjectID = projectID;
+  }
+}
 
-  return {
-    projects,
-    currentProjectID,
-    addProject,
-    setCurrentProject,
-    tasks,
-  };
-})();
+export const storage = new Storage();

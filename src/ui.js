@@ -1,9 +1,8 @@
 "use strict";
 
-import { Storage } from "./storage";
+import { storage } from "./storage";
 import { createProject } from "./utils";
 
-const root = document.documentElement;
 const btnAddProject = document.querySelector(".btn-add-project");
 const projectForm = document.querySelector(".project-form");
 const inputProjectName = document.querySelector("#project-name");
@@ -13,7 +12,7 @@ const projectsList = document.querySelector(".projects-list");
 const btnThemeSwitch = document.querySelector(".theme-switch");
 
 const toggleDark = function () {
-  root.classList.toggle("dark");
+  document.documentElement.classList.toggle("dark");
 };
 
 const toggleProjectInput = function () {
@@ -21,22 +20,29 @@ const toggleProjectInput = function () {
   projectForm.classList.toggle("hidden");
 };
 
+// eye protection
+btnThemeSwitch.addEventListener("click", toggleDark);
+
+const highlightCurrentProject = function () {
+  const currentProjectID = storage.currentProjectID;
+  const project = Array.from(projectsList.children).find(
+    (el) => el.dataset.id === currentProjectID
+  );
+  Array.from(projectsList.children).forEach((el) =>
+    el.classList.remove("active")
+  );
+  project.classList.add("active");
+};
+
 const redrawProjects = function () {
   projectsList.innerHTML = "";
-  Storage.projects.forEach((project) => {
+  storage.projects.forEach((project) => {
     projectsList.insertAdjacentHTML(
       "afterbegin",
       `<a href="#" class="project" data-id="${project.id}">${project.name}</a>`
     );
   });
-};
-
-// eye protection
-btnThemeSwitch.addEventListener("click", toggleDark);
-
-// TODO: write this
-const highlightCurrentProject = function () {
-  console.log(Array.from(projectsList.children));
+  highlightCurrentProject();
 };
 
 btnAddProject.addEventListener("click", function () {
@@ -56,7 +62,6 @@ btnAdd.addEventListener("click", function () {
 
 projectsList.addEventListener("click", function (e) {
   if (!e.target.classList.contains("project")) return;
-  console.log(e.target);
-  Storage.setCurrentProject(e.target.dataset.id);
+  storage.setCurrentProject(e.target.dataset.id);
   highlightCurrentProject();
 });
