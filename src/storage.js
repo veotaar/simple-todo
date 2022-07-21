@@ -10,6 +10,10 @@ class Storage {
     this.currentProjectID = project.id;
   }
 
+  addTask(task) {
+    this.tasks.push(task);
+  }
+
   setCurrentProject(projectID) {
     this.currentProjectID = projectID;
   }
