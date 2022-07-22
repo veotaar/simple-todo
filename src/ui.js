@@ -1,5 +1,6 @@
 import { storage } from "./storage";
 import { createProject, createTask } from "./utils";
+import { formatDistanceToNow, parseISO } from "date-fns";
 
 const btnAddProject = document.querySelector(".btn-add-project");
 const btnAddTask = document.querySelector(".btn-add-task");
@@ -60,7 +61,6 @@ const highlightCurrentProject = function () {
   project.classList.add("active");
 };
 
-// TODO handle time input with date-fns
 const redrawTasks = function () {
   const { currentProjectID } = storage;
   tasksList.innerHTML = "";
@@ -79,7 +79,7 @@ const redrawTasks = function () {
             <div class="task-desc">${task.description}</div>
           </div>
           <div class="task-info">
-            <div class="task-due">30 Aug</div>
+            <div class="task-due">${task.date}</div>
             <div class="task-priority">${task.priority}</div>
           </div>
         </div>
@@ -116,7 +116,7 @@ projectsList.addEventListener("click", function (e) {
 btnSave.addEventListener("click", function () {
   const title = formTitle.value;
   const description = formDescription.value;
-  const date = "32 Aug";
+  const date = formatDistanceToNow(parseISO(formDate.value));
   const priority = formPriority.value;
 
   createTask(title, description, date, priority);
@@ -136,3 +136,8 @@ btnFormCancel.addEventListener("click", function () {
   addTaskForm.classList.add("hidden");
   clearForm();
 });
+
+// add default project
+createProject("Inbox");
+redrawProjects();
+redrawTasks();
