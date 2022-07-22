@@ -1,5 +1,5 @@
 import { storage } from "./storage";
-import { createProject, createTask } from "./utils";
+import { createProject, createTask, deleteTask } from "./utils";
 import { formatDistanceToNow, parseISO } from "date-fns";
 
 const btnAddProject = document.querySelector(".btn-add-project");
@@ -65,11 +65,11 @@ const redrawTasks = function () {
   const { currentProjectID } = storage;
   tasksList.innerHTML = "";
   storage.tasks.forEach((task) => {
-    if (task.id !== currentProjectID) return;
+    if (task.projectID !== currentProjectID) return;
     tasksList.insertAdjacentHTML(
       "beforeend",
       `
-      <div class="task">
+      <div class="task" data-id="${task.id}">
         <div class="check">
           <input type="checkbox" />
         </div>
@@ -80,7 +80,7 @@ const redrawTasks = function () {
           </div>
           <div class="task-info">
             <div class="task-due">${task.date}</div>
-            <div class="task-priority">${task.priority}</div>
+            <div class="task-priority">Priority: ${task.priority}</div>
           </div>
         </div>
       </div>
@@ -116,7 +116,12 @@ projectsList.addEventListener("click", function (e) {
 btnSave.addEventListener("click", function () {
   const title = formTitle.value;
   const description = formDescription.value;
-  const date = formatDistanceToNow(parseISO(formDate.value));
+  const date =
+    formDate.value === ""
+      ? "no date"
+      : formatDistanceToNow(parseISO(formDate.value), {
+          addSuffix: true,
+        });
   const priority = formPriority.value;
 
   createTask(title, description, date, priority);
@@ -135,6 +140,14 @@ btnAddTask.addEventListener("click", function () {
 btnFormCancel.addEventListener("click", function () {
   addTaskForm.classList.add("hidden");
   clearForm();
+});
+
+// delete a task
+tasksList.addEventListener("click", function (e) {
+  if (e.target.tagName !== "INPUT") return;
+  const taskID = e.target.closest(".task").dataset.id;
+  deleteTask(taskID);
+  setTimeout(redrawTasks, 200);
 });
 
 // add default project

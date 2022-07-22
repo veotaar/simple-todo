@@ -12,3 +12,7 @@ export const createTask = function (title, description, date, priority) {
   const task = new Task(title, description, date, priority, currentProjectID);
   storage.addTask(task);
 };
+
+export const deleteTask = function (taskID) {
+  storage.deleteTask(taskID);
+};

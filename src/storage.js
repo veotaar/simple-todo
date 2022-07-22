@@ -14,6 +14,11 @@ class Storage {
     this.tasks.push(task);
   }
 
+  deleteTask(taskID) {
+    const indexToDelete = this.tasks.findIndex((task) => task.id === taskID);
+    this.tasks.splice(indexToDelete, 1);
+  }
+
   setCurrentProject(projectID) {
     this.currentProjectID = projectID;
   }
