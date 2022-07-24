@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simple ToDo</title>
-  <script defer src="main.js"></script></head>
+  <link rel="icon" href="assets/favicon.png"><script defer src="main.js"></script></head>
   <body>
     <div class="container">
       <button class="theme-switch">toggle dark</button>
@@ -67,6 +67,37 @@
           <div class="form-buttons-container">
             <button class="btn-cancel">Cancel</button>
             <button class="btn-save">Save</button>
+          </div>
+        </div>
+
+        <div class="edit-task-form hidden">
+          <div>
+            <label for="edit-title">Title</label>
+            <input type="text" name="title" id="edit-title" />
+          </div>
+
+          <div>
+            <label for="edit-description">Description</label>
+            <input type="text" name="description" id="edit-description" />
+          </div>
+
+          <div>
+            <label for="edit-date">Due Date</label>
+            <input type="date" name="date" id="edit-date" />
+          </div>
+
+          <div>
+            <label for="edit-priority">Priority</label>
+            <select name="priority" id="edit-priority">
+              <option value="high">high</option>
+              <option value="medium" selected>medium</option>
+              <option value="low">low</option>
+            </select>
+          </div>
+
+          <div class="form-buttons-container">
+            <button class="btn-edit-cancel">Cancel</button>
+            <button class="btn-edit-save">Edit</button>
           </div>
         </div>
 

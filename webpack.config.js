@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 // const WebpackPwaManifest = require("webpack-pwa-manifest");
 // const WorkboxPlugin = require("workbox-webpack-plugin");
 const isProduction = process.env.NODE_ENV === "production";
@@ -24,6 +25,7 @@ const config = {
     new HtmlWebpackPlugin({
       template: "index.html",
     }),
+    new FaviconsWebpackPlugin("./src/assets/favicon/logo.png"),
   ],
   module: {
     rules: [
