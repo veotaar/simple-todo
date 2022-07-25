@@ -16,3 +16,17 @@ export const createTask = function (title, description, date, priority) {
 export const deleteTask = function (taskID) {
   storage.deleteTask(taskID);
 };
+
+export const editTask = function (
+  taskID,
+  newTitle,
+  newDesc,
+  newDate,
+  newPriority
+) {
+  storage.editTask(taskID, newTitle, newDesc, newDate, newPriority);
+};
+
+export const getTask = function (taskID) {
+  return storage.getTask(taskID);
+};

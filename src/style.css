@@ -232,7 +232,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: var(--size-3);
-  border: var(--border-size-1) dashed var(--gray-7);
+  border: var(--border-size-1) solid var(--gray-5);
   border-radius: var(--radius-2);
   padding: var(--size-3);
   margin-bottom: var(--size-3);
@@ -283,17 +283,18 @@ input[type="checkbox"]:focus {
 
 .task-details {
   display: flex;
-  justify-content: space-between;
   flex: 1;
 }
 
 .task-info {
+  margin-left: auto;
   text-align: end;
 }
 
 /* Add Task Form */
 
-.add-task-form {
+.add-task-form,
+.edit-task-form {
   border: 1px solid black;
   display: flex;
   flex-direction: column;
@@ -304,20 +305,25 @@ input[type="checkbox"]:focus {
 }
 
 .add-task-form input,
-.add-task-form select {
+.add-task-form select,
+.edit-task-form input,
+.edit-task-form select {
   width: 100%;
   padding: var(--size-1);
 }
 
-.add-task-form label {
+.add-task-form label,
+.edit-task-form label {
   display: block;
 }
 
-.add-task-form div {
+.add-task-form div,
+.edit-task-form div {
   flex: 1;
 }
 
-.add-task-form button {
+.add-task-form button,
+.edit-task-form button {
   padding: var(--size-1) var(--size-2);
   cursor: pointer;
   width: var(--size-11);

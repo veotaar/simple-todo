@@ -1,5 +1,11 @@
 import { storage } from "./storage";
-import { createProject, createTask, deleteTask } from "./utils";
+import {
+  createProject,
+  createTask,
+  deleteTask,
+  getTask,
+  editTask,
+} from "./utils";
 import { formatDistanceToNow, parseISO } from "date-fns";
 
 const btnAddProject = document.querySelector(".btn-add-project");
@@ -20,11 +26,28 @@ const formDescription = document.querySelector("#description");
 const formDate = document.querySelector("#date");
 const formPriority = document.querySelector("#priority");
 
+const editTaskForm = document.querySelector(".edit-task-form");
+const btnEditCancel = document.querySelector(".btn-edit-cancel");
+const btnEdit = document.querySelector(".btn-edit-save");
+const editTitle = document.querySelector("#edit-title");
+const editDescription = document.querySelector("#edit-description");
+const editDate = document.querySelector("#edit-date");
+const editPriority = document.querySelector("#edit-priority");
+
 const clearForm = function () {
   formTitle.value = "";
   formDescription.value = "";
   formDate.value = "";
   formPriority.value = "medium";
+};
+
+const setInputDateToToday = function () {
+  const now = new Date();
+  const day = ("" + now.getDate()).padStart(2, "0");
+  const month = ("" + (now.getMonth() + 1)).padStart(2, "0");
+  const today = `${now.getFullYear()}-${month}-${day}`;
+  formDate.value = today;
+  editDate.value = today;
 };
 
 const toggleDark = function () {
@@ -82,6 +105,7 @@ const redrawTasks = function () {
             <div class="task-due">${task.date}</div>
             <div class="task-priority">Priority: ${task.priority}</div>
           </div>
+          <button class="btn-edit">EDIT</button>
         </div>
       </div>
       `
@@ -132,11 +156,14 @@ btnSave.addEventListener("click", function () {
   redrawTasks();
 });
 
+// show task adding form
 btnAddTask.addEventListener("click", function () {
   addTaskForm.classList.remove("hidden");
   formTitle.focus();
+  setInputDateToToday();
 });
 
+//
 btnFormCancel.addEventListener("click", function () {
   addTaskForm.classList.add("hidden");
   clearForm();
@@ -147,10 +174,63 @@ tasksList.addEventListener("click", function (e) {
   if (e.target.tagName !== "INPUT") return;
   const taskID = e.target.closest(".task").dataset.id;
   deleteTask(taskID);
-  setTimeout(redrawTasks, 200);
+  setTimeout(redrawTasks, 250);
 });
+
+/////////////////////////////////
+// EDITING
+// edit a task
+tasksList.addEventListener("click", function (e) {
+  if (e.target.tagName !== "BUTTON") return;
+  const taskID = e.target.closest(".task").dataset.id;
+  const task = getTask(taskID);
+  storage.currentTaskID = taskID;
+
+  // populate edit form
+  editTitle.value = task.title;
+  editDescription.value = task.description;
+  editPriority.value = task.priority;
+  setInputDateToToday();
+
+  // open edit form
+  editTaskForm.classList.remove("hidden");
+});
+
+// cancel edit form
+btnEditCancel.addEventListener("click", function () {
+  editTaskForm.classList.add("hidden");
+});
+
+btnEdit.addEventListener("click", function (e) {
+  const taskID = storage.currentTaskID;
+
+  const newTitle = editTitle.value;
+  const newDesc = editDescription.value;
+  const newPriority = editPriority.value;
+  const newDate =
+    editDate.value === ""
+      ? "no date"
+      : formatDistanceToNow(parseISO(editDate.value), {
+          addSuffix: true,
+        });
+
+  editTask(taskID, newTitle, newDesc, newDate, newPriority);
+  redrawTasks();
+
+  // hide edit form
+  editTaskForm.classList.add("hidden");
+});
+/////////////////////////////////
 
 // add default project
 createProject("Inbox");
+
+////////
+// for debugging
+createTask("title", "description", "date", "high");
+createTask("title", "description", "date", "medium");
+createTask("title", "description", "date", "low");
+////////
+
 redrawProjects();
 redrawTasks();
