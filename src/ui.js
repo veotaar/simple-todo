@@ -50,17 +50,17 @@ const setInputDateToToday = function () {
   editDate.value = today;
 };
 
-const toggleDark = function () {
-  document.documentElement.classList.toggle("dark");
-};
-
 const toggleProjectInput = function () {
   btnAddProject.classList.toggle("hidden");
   projectForm.classList.toggle("hidden");
 };
 
-// eye protection
-btnThemeSwitch.addEventListener("click", toggleDark);
+// toggle dark theme
+btnThemeSwitch.addEventListener("click", function () {
+  document.documentElement.classList.toggle("dark");
+  if (localStorage.getItem("dark")) localStorage.removeItem("dark");
+  else localStorage.setItem("dark", true);
+});
 
 const redrawProjects = function () {
   projectsList.innerHTML = "";
@@ -127,6 +127,7 @@ btnAdd.addEventListener("click", function () {
   redrawProjects();
   redrawTasks();
   inputProjectName.value = "";
+  toggleProjectInput();
 });
 
 projectsList.addEventListener("click", function (e) {
@@ -222,15 +223,17 @@ btnEdit.addEventListener("click", function (e) {
 });
 /////////////////////////////////
 
-// add default project
-createProject("Inbox");
+// load everything from localStorage
+if (localStorage.getItem("projects")) storage.loadProjects();
+else createProject("Inbox");
 
-////////
-// for debugging
-createTask("title", "description", "date", "high");
-createTask("title", "description", "date", "medium");
-createTask("title", "description", "date", "low");
-////////
+if (localStorage.getItem("tasks")) storage.loadTasks();
+
+if (localStorage.getItem("currentProjectID")) storage.loadCurrentProjectID();
+
+if (localStorage.getItem("dark"))
+  document.documentElement.classList.add("dark");
 
 redrawProjects();
+highlightCurrentProject();
 redrawTasks();
