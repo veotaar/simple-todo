@@ -34,6 +34,8 @@ const editDescription = document.querySelector("#edit-description");
 const editDate = document.querySelector("#edit-date");
 const editPriority = document.querySelector("#edit-priority");
 
+const btnDelete = document.querySelector(".delete");
+
 const clearForm = function () {
   formTitle.value = "";
   formDescription.value = "";
@@ -222,6 +224,20 @@ btnEdit.addEventListener("click", function (e) {
   editTaskForm.classList.add("hidden");
 });
 /////////////////////////////////
+
+const deleteEverything = function () {
+  storage.projects = [];
+  storage.tasks = [];
+  storage.currentProjectID = [];
+  storage.saveToLocalStorage();
+
+  createProject("Inbox");
+  redrawProjects();
+  highlightCurrentProject();
+  redrawTasks();
+};
+
+btnDelete.addEventListener("click", deleteEverything);
 
 // load everything from localStorage
 if (localStorage.getItem("projects")) storage.loadProjects();

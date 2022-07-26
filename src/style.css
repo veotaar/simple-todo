@@ -333,6 +333,15 @@ input[type="checkbox"]:focus {
   align-self: end;
 }
 
+.delete {
+  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: var(--size-6);
+  margin-inline: auto;
+}
+
 .hidden {
   display: none;
 }
