@@ -253,9 +253,9 @@ if (localStorage.getItem("currentProjectID")) storage.loadCurrentProjectID();
 if (localStorage.getItem("dark"))
   document.documentElement.classList.add("dark");
 
-// redrawProjects();
-// highlightCurrentProject();
-// redrawTasks();
+redrawProjects();
+highlightCurrentProject();
+redrawTasks();
 
 // testing
 // createProject("Test");
