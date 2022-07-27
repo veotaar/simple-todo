@@ -258,10 +258,10 @@ if (localStorage.getItem("dark"))
 // redrawTasks();
 
 // testing
-createProject("Test");
-redrawProjects();
-highlightCurrentProject();
-createTask("the title", "the description", "in 2 months", "high");
-createTask("the title", "the description", "in 2 months", "high");
-createTask("the title", "the description", "in 2 months", "high");
-redrawTasks();
+// createProject("Test");
+// redrawProjects();
+// highlightCurrentProject();
+// createTask("the title", "the description", "in 2 months", "high");
+// createTask("the title", "the description", "in 2 months", "high");
+// createTask("the title", "the description", "in 2 months", "high");
+// redrawTasks();
