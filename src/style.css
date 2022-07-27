@@ -99,6 +99,9 @@ select {
   --task-priority-color: #af3a03;
 
   --delete-hover-color: #9d0006;
+
+  --selection-bg-color: #af3a03;
+  --selection-text-color: #f9f5d7;
 }
 
 :root.dark {
@@ -420,6 +423,11 @@ input[type="checkbox"]:focus {
 .delete:hover {
   outline: 3px dotted var(--delete-hover-color);
   color: var(--delete-hover-color);
+}
+
+::selection {
+  background-color: var(--selection-bg-color);
+  color: var(--selection-text-color);
 }
 
 @media only screen and (max-width: 540px) {
