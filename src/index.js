@@ -4,7 +4,7 @@ import "./ui";
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register("/simple-todo/service-worker.js")
+      .register("/simple-todo/service-worker.js", { scope: "/simple-todo/" })
       .then((registration) => {
         console.log("SW registered: ", registration);
       })

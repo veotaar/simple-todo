@@ -1,6 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
+// const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const WorkboxPlugin = require("workbox-webpack-plugin");
 const isProduction = process.env.NODE_ENV === "production";
@@ -25,7 +25,7 @@ const config = {
     new HtmlWebpackPlugin({
       template: "index.html",
     }),
-    new FaviconsWebpackPlugin("./src/assets/favicon/logo.png"),
+    // new FaviconsWebpackPlugin("./src/assets/favicon/logo.png"),
     new WebpackPwaManifest({
       name: "Simple Todo",
       short_name: "ToDo",
@@ -35,6 +35,7 @@ const config = {
       publicPath: "./",
       id: "/simple-todo/",
       start_url: "/simple-todo/",
+      scope: "/simple-todo/",
       crossorigin: null, //can be null, use-credentials or anonymous
       inject: true,
       ios: true,

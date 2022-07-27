@@ -45,5 +45,6 @@
   "description": "A to-do list application",
   "background_color": "#ffffff",
   "theme_color": "#0f172a",
-  "id": "/simple-todo/"
+  "id": "/simple-todo/",
+  "scope": "/simple-todo/"
 }
