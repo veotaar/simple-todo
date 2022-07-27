@@ -75,37 +75,71 @@ select {
 
 /* ********************************* */
 
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+
 :root {
-  --bg-color: var(--gray-2);
-  --container-bg-color: var(--gray-0);
-  --container-border-color: var(--gray-5);
-  --hdg-color: var(--gray-8);
+  --bg-color: #fbf1c7;
+  --container-bg-color: #f9f5d7;
+  --container-border-color: #d5c4a1;
+  --hdg-color: #3c3836;
+  --border-color: #d5c4a1;
+
+  --project-active-color: #282828;
+  --project-bg-color: var(--border-color);
+
+  --text-color: #3c3836;
+
+  --input-bg-color: var(--bg-color);
+  --input-text-color: var(--project-active-color);
+  --input-border-color: #a89984;
+
+  --task-title-color: #076678;
+  --task-description-color: #427b58;
+  --task-date-color: #8f3f71;
+  --task-priority-color: #af3a03;
+
+  --delete-hover-color: #9d0006;
 }
 
 :root.dark {
-  --bg-color: var(--gray-8);
-  --container-bg-color: var(--gray-7);
-  --container-border-color: var(--gray-6);
-  --hdg-color: var(--gray-2);
+  --bg-color: #282828;
+  --container-bg-color: #1d2021;
+  --container-border-color: #504945;
+  --hdg-color: #ebdbb2;
+  --border-color: #504945;
+
+  --project-active-color: #fbf1c7;
+  --project-bg-color: var(--border-color);
+
+  --text-color: #ebdbb2;
+
+  --input-bg-color: var(--bg-color);
+  --input-text-color: var(--project-active-color);
+  --input-border-color: #7c6f64;
+
+  --task-title-color: #83a598;
+  --task-description-color: #8ec07c;
+  --task-date-color: #d3869b;
+  --task-priority-color: #fe8019;
+
+  --delete-hover-color: #fb4934;
 }
 
 body {
-  font-family: var(--font-sans);
-  padding-inline: var(--size-4);
+  font-family: "JetBrains Mono", monospace;
+  padding: var(--size-7);
   background-color: var(--bg-color);
-  /* background-image: var(--gradient-23); */
+  color: var(--text-color);
 }
 
 .container {
   position: relative;
   max-width: 42rem;
-  padding: var(--size-7);
+  padding: var(--size-4) var(--size-6);
   margin-inline: auto;
-  margin-block: var(--size-7);
   border: 1px solid var(--container-border-color);
   border-radius: var(--radius-2);
   background-color: var(--container-bg-color);
-  /* background-image: var(--gradient-15); */
 }
 
 .theme-switch {
@@ -116,8 +150,10 @@ body {
 
 .logo {
   font-size: var(--font-size-5);
-  margin-block: var(--size-7);
-  border-bottom: var(--border-size-1) dashed var(--gray-6);
+  font-style: italic;
+  letter-spacing: var(--font-letterspacing-3);
+  font-weight: var(--font-weight-7);
+  margin-block-end: var(--size-7);
 }
 
 h1,
@@ -129,56 +165,57 @@ h3 {
 /* **************** */
 /* Projects Section */
 .projects {
-  margin-bottom: var(--size-2);
+  margin-bottom: var(--size-8);
 }
 
 .projects-heading {
-  /* font-size: var(--font-size-4); */
-  /* display: flex;
-  align-items: center;
-  gap: var(--size-2); */
+  margin-bottom: var(--size-2);
+}
+
+.projects-title {
+  text-decoration: underline;
   margin-bottom: var(--size-2);
 }
 
 .btn {
-  border: var(--border-size-1) solid var(--gray-5);
+  background: none;
+  border: var(--border-size-1) solid var(--border-color);
   padding: var(--size-1) var(--size-3);
-  border-radius: var(--radius-3);
+  border-radius: var(--radius-2);
   cursor: pointer;
+  color: var(--text-color);
 }
 
 .btn:hover {
-  background-color: var(--gray-2);
+  background-color: var(--project-active-color);
+  color: var(--project-bg-color);
 }
 
 .btn:active {
-  background-color: var(--gray-3);
+  background-color: var(--text-color);
 }
 
-.add {
-  background-color: var(--green-1);
+.btn-emp,
+.btn-save,
+.btn-edit-save {
+  background-color: var(--project-active-color);
+  color: var(--project-bg-color);
 }
 
-.add:hover {
-  background-color: var(--green-2);
+.btn-add-project {
+  width: 100%;
 }
 
-.cancel {
-  background-color: var(--red-1);
-}
-
-.cancel:hover {
-  background-color: var(--red-2);
+.project-form {
+  display: flex;
+  gap: var(--size-2);
+  width: 100%;
 }
 
 #project-name {
-  border: var(--border-size-2) solid var(--gray-7);
+  flex: 1;
   padding-inline: var(--size-2);
-  border-radius: var(--radius-3);
-}
-
-#project-name:focus-visible {
-  outline: var(--border-size-2) solid var(--gray-7);
+  border-radius: var(--radius-2);
 }
 
 .projects-list {
@@ -194,29 +231,36 @@ h3 {
 .projects-list > a:hover,
 .projects-list > a:active {
   text-decoration: none;
-  border: var(--border-size-1) solid var(--gray-7);
-  /* background-color: var(--gray-8); */
-  background-image: var(--gradient-23);
-  color: var(--gray-0);
+  border: var(--border-size-1) solid var(--border-color);
+  background-color: var(--project-active-color);
+  color: var(--project-bg-color);
 }
 
 .project {
-  border: var(--border-size-1) solid var(--gray-5);
-  background-color: var(--gray-2);
-  color: var(--gray-7);
-  border-radius: var(--radius-4);
-  padding: var(--size-2) var(--size-4);
+  border: var(--border-size-1) solid var(--border-color);
+  background-color: var(--project-bg-color);
+  color: var(--text-color);
+  border-radius: var(--radius-2);
+  padding: var(--size-1) var(--size-4);
   letter-spacing: var(--font-letterspacing-2);
 }
 
 .active {
-  border: var(--border-size-1) solid var(--gray-7);
-  /* background-color: var(--gray-8); */
-  background-image: var(--gradient-23);
-  color: var(--gray-0);
+  border: var(--border-size-1) solid var(--border-color);
+  background-color: var(--project-active-color);
+  color: var(--project-bg-color);
 }
 
 /* *************** */
+
+input[type="text"],
+input[type="date"],
+select {
+  background-color: var(--input-bg-color);
+  border: var(--border-size-1) solid var(--input-border-color);
+  border-radius: var(--radius-2);
+  color: var(--input-text-color);
+}
 
 /* ************** */
 /* Tasks Section */
@@ -225,29 +269,53 @@ h3 {
 }
 
 .tasks-heading {
+  text-decoration: underline;
   margin-bottom: var(--size-2);
+}
+
+.tasks-list {
+  margin-top: var(--size-3);
+}
+
+.btn-add-task {
+  width: 100%;
 }
 
 .task {
   display: flex;
   align-items: center;
   gap: var(--size-3);
-  border: var(--border-size-1) solid var(--gray-5);
+  border: var(--border-size-1) solid var(--border-color);
   border-radius: var(--radius-2);
   padding: var(--size-3);
   margin-bottom: var(--size-3);
+  font-weight: var(--font-weight-7);
+}
+
+.task-title {
+  color: var(--task-title-color);
+}
+
+.task-desc {
+  color: var(--task-description-color);
+}
+
+.task-due {
+  color: var(--task-date-color);
+}
+
+.task-priority {
+  color: var(--task-priority-color);
 }
 
 .task:hover {
-  border-style: solid;
-  background-image: var(--gradient-23);
-  color: var(--gray-0);
+  outline: 2px solid;
 }
 
 input[type="checkbox"] {
   cursor: pointer;
   appearance: none;
-  background-color: #fff;
+  background-color: var(--container-bg-color);
   margin: 0;
 
   font: inherit;
@@ -268,7 +336,7 @@ input[type="checkbox"]::before {
   height: var(--size-3);
   transform: scale(0);
   transition: 60ms transform ease-in-out;
-  box-shadow: inset 1em 1em var(--gray-8);
+  box-shadow: inset 1em 1em var(--project-active-color);
   border-radius: var(--radius-1);
 }
 
@@ -283,6 +351,7 @@ input[type="checkbox"]:focus {
 
 .task-details {
   display: flex;
+  gap: var(--size-2);
   flex: 1;
 }
 
@@ -291,11 +360,15 @@ input[type="checkbox"]:focus {
   text-align: end;
 }
 
+.btn-edit {
+  border: none;
+}
+
 /* Add Task Form */
 
 .add-task-form,
 .edit-task-form {
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   gap: var(--size-2);
@@ -336,10 +409,38 @@ input[type="checkbox"]:focus {
 .delete {
   display: block;
   background: none;
+  color: inherit;
   border: none;
   cursor: pointer;
-  margin-top: var(--size-6);
+  margin-top: var(--size-7);
   margin-inline: auto;
+  border-radius: var(--radius-2);
+}
+
+.delete:hover {
+  outline: 3px dotted var(--delete-hover-color);
+  color: var(--delete-hover-color);
+}
+
+@media only screen and (max-width: 540px) {
+  .task-details {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .task-info {
+    margin: 0;
+    text-align: center;
+  }
+
+  body {
+    padding: var(--size-2);
+  }
+
+  .container {
+    padding: var(--size-2);
+  }
 }
 
 .hidden {

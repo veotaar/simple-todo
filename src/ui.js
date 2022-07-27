@@ -105,9 +105,9 @@ const redrawTasks = function () {
           </div>
           <div class="task-info">
             <div class="task-due">${task.date}</div>
-            <div class="task-priority">Priority: ${task.priority}</div>
+            <div class="task-priority">P: ${task.priority}</div>
           </div>
-          <button class="btn-edit">EDIT</button>
+          <button class="btn btn-edit">EDIT</button>
         </div>
       </div>
       `
@@ -155,6 +155,7 @@ btnSave.addEventListener("click", function () {
 
   addTaskForm.classList.add("hidden");
   clearForm();
+  btnAddTask.classList.remove("hidden");
 
   redrawTasks();
 });
@@ -164,15 +165,17 @@ btnAddTask.addEventListener("click", function () {
   addTaskForm.classList.remove("hidden");
   formTitle.focus();
   setInputDateToToday();
+  btnAddTask.classList.add("hidden");
 });
 
 //
 btnFormCancel.addEventListener("click", function () {
   addTaskForm.classList.add("hidden");
+  btnAddTask.classList.remove("hidden");
   clearForm();
 });
 
-// delete a task
+// delete / complete a task
 tasksList.addEventListener("click", function (e) {
   if (e.target.tagName !== "INPUT") return;
   const taskID = e.target.closest(".task").dataset.id;
@@ -250,6 +253,15 @@ if (localStorage.getItem("currentProjectID")) storage.loadCurrentProjectID();
 if (localStorage.getItem("dark"))
   document.documentElement.classList.add("dark");
 
+// redrawProjects();
+// highlightCurrentProject();
+// redrawTasks();
+
+// testing
+createProject("Test");
 redrawProjects();
 highlightCurrentProject();
+createTask("the title", "the description", "in 2 months", "high");
+createTask("the title", "the description", "in 2 months", "high");
+createTask("the title", "the description", "in 2 months", "high");
 redrawTasks();

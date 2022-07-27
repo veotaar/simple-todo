@@ -4,16 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple ToDo</title>
+    <title>Odin ToDo</title>
   <link rel="icon" href="assets/favicon.png"><script defer src="main.js"></script></head>
   <body>
     <div class="container">
-      <button class="theme-switch">theme</button>
-      <h1 class="logo">// ToDo</h1>
+      <button class="btn theme-switch">theme</button>
+      <h1 class="logo">// TODO</h1>
       <section class="projects">
         <div class="projects-heading">
-          <h2>Projects</h2>
-          <button class="btn btn-add-project">&plus; Add</button>
+          <h2 class="projects-title">Projects</h2>
+          <button class="btn btn-add-project">&plus; Add a project</button>
           <div class="project-form hidden">
             <input
               type="text"
@@ -21,23 +21,18 @@
               id="project-name"
               placeholder="Project name..."
             />
-            <button class="btn add">Add &ldca;</button>
             <button class="btn cancel">Cancel</button>
+            <button class="btn btn-emp add">Save &ldca;</button>
           </div>
         </div>
         <div class="projects-list">
-          <!-- <a href="#" class="project active">Projectsdfasfdsaf 1</a>
-          <a href="#" class="project">Project 2</a>
-          <a href="#" class="project">Pro 3</a>
-          <a href="#" class="project">Project 4</a>
-          <a href="#" class="project">Project 5</a>
-          <a href="#" class="project">Project 6</a> -->
+          <!-- Projects go here -->
         </div>
       </section>
 
       <section class="tasks">
         <h2 class="tasks-heading">Tasks</h2>
-        <button class="btn-add-task">&plus; Add a Task</button>
+        <button class="btn btn-add-task">&plus; Add a Task</button>
 
         <div class="add-task-form hidden">
           <div>
@@ -65,8 +60,8 @@
           </div>
 
           <div class="form-buttons-container">
-            <button class="btn-cancel">Cancel</button>
-            <button class="btn-save">Save</button>
+            <button class="btn btn-cancel">Cancel</button>
+            <button class="btn btn-save">Save</button>
           </div>
         </div>
 
@@ -96,63 +91,17 @@
           </div>
 
           <div class="form-buttons-container">
-            <button class="btn-edit-cancel">Cancel</button>
-            <button class="btn-edit-save">Edit</button>
+            <button class="btn btn-edit-cancel">Cancel</button>
+            <button class="btn btn-edit-save">OK</button>
           </div>
         </div>
 
         <div class="tasks-list">
-          <div class="task">
-            <div class="check">
-              <input type="checkbox" />
-            </div>
-            <div class="task-details">
-              <div class="task-head">
-                <div class="task-title">Do something loooooooooong</div>
-                <div class="task-desc">Description sfadsfadf</div>
-              </div>
-              <div class="task-info">
-                <div class="task-due">30 Aug</div>
-                <div class="task-priority">Priority: High</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="task">
-            <div class="check">
-              <input type="checkbox" />
-            </div>
-            <div class="task-details">
-              <div class="task-head">
-                <div class="task-title">Do something loooooooooong</div>
-                <div class="task-desc">Description sfadsfadf</div>
-              </div>
-              <div class="task-info">
-                <div class="task-due">30 Aug</div>
-                <div class="task-priority">Priority: High</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="task">
-            <div class="check">
-              <input type="checkbox" />
-            </div>
-            <div class="task-details">
-              <div class="task-head">
-                <div class="task-title">Do something loooooooooong</div>
-                <div class="task-desc">Description sfadsfadf</div>
-              </div>
-              <div class="task-info">
-                <div class="task-due">30 Aug</div>
-                <div class="task-priority">Priority: High</div>
-              </div>
-            </div>
-          </div>
+          <!-- tasks go here -->
         </div>
       </section>
 
-      <button class="delete">Delete everything?</button>
+      <button class="delete">delete everything</button>
     </div>
   </body>
 </html>
