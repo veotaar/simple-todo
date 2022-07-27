@@ -1,0 +1,48 @@
+{
+  "icons": [
+    {
+      "src": "./icon_512x512.c859b9ce9bed6389b6d80d95c8d5968c.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./icon_512x512.c859b9ce9bed6389b6d80d95c8d5968c.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon_384x384.32c17ef92f11d37c9cfbefbb1cb7aa70.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon_256x256.5416aadd9af0e21c9f4d2ca9bb54257c.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon_192x192.f536d748d84200923583f9058617e7c7.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon_128x128.6a634d7ac79fc1bc065dd6d564ad1c4b.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon_96x96.aa33364098a56286d4c6362b34eeab48.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "name": "Simple Todo",
+  "short_name": "ToDo",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "A to-do list application",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a"
+}
