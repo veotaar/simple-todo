@@ -256,8 +256,7 @@ h3 {
 
 /* *************** */
 
-input[type="text"],
-input[type="date"],
+input,
 select {
   background-color: var(--input-bg-color);
   border: var(--border-size-1) solid var(--input-border-color);
@@ -430,7 +429,7 @@ input[type="checkbox"]:focus {
   color: var(--selection-text-color);
 }
 
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 585px) {
   .task-details {
     flex-direction: column;
     align-items: center;
@@ -448,6 +447,14 @@ input[type="checkbox"]:focus {
 
   .container {
     padding: var(--size-2);
+  }
+
+  .project-form {
+    flex-direction: column;
+  }
+
+  #project-name {
+    padding: var(--size-1) var(--size-2);
   }
 }
 
