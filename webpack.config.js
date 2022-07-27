@@ -33,6 +33,8 @@ const config = {
       background_color: "#ffffff",
       theme_color: "#0f172a",
       publicPath: "./",
+      id: "/simple-todo/",
+      start_url: "/simple-todo/",
       crossorigin: null, //can be null, use-credentials or anonymous
       inject: true,
       ios: true,
